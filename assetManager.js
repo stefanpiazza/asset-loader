@@ -1,6 +1,8 @@
 function AssetManager() {
     this.successCount = 0;
     this.errorCount = 0;
+
+    //Cahce of <img src="/path">
     this.cache = {};
     this.downloadQueue = [];
 }
@@ -10,7 +12,7 @@ AssetManager.prototype.queueDownload = function(path) {
 }
 
 AssetManager.prototype.downloadAll = function(downloadCallback) {
-    if (this.downloadQueue.length === 0 && this.soundsQueue.length === 0) {
+    if (this.downloadQueue.length === 0) {
         downloadCallback();
     }
         
@@ -57,4 +59,5 @@ ASSET_MANAGER.queueDownload('Imperial_Boy2.jpg');
 
 ASSET_MANAGER.downloadAll(function() {
     //CALLBACK FUNCTION
+    console.log(ASSET_MANAGER.getAsset('Imperial_Boy2.jpg'));
 });
